@@ -133,3 +133,19 @@ Trace:#0 C:\xamppWEB\htdocs\TicketPro\APIR\Method\Delete.php(83): PDOStatement->
 [2025-11-27 19:11:15] deleted ticket id=1 audits_deleted=29 tickets_deleted=1
 [2025-11-27 19:11:19] deleted ticket id=2 audits_deleted=12 tickets_deleted=1
 [2025-11-27 19:11:22] deleted ticket id=3 audits_deleted=6 tickets_deleted=1
+[2026-01-21 17:51:05] SP_Delete error for table user id=2: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE vientoenpopa.SP_Deleteuser does not exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(75): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2026-01-21 17:51:05] direct DELETE error for table user id=2: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.user' doesn't exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(83): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2026-01-21 17:51:24] SP_Delete error for table user id=2: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE vientoenpopa.SP_Deleteuser does not exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(75): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2026-01-21 17:51:24] direct DELETE error for table user id=2: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.user' doesn't exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(83): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
