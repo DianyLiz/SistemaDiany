@@ -1,5 +1,5 @@
 <?php
-namespace config;
+namespace Config;
 
 //$conn = new Conexion("vientoenpopa");
 

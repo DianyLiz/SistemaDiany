@@ -27,7 +27,7 @@
         $data = $user->authenticateByEmail($email, $password);
 
         if($data){
-            // Iniciar sesión con datos mínimos
+            // Iniciar sesión con datos mínimos (clave 'username' usada en index.php)
             $_SESSION["system"] = [
                 "username" => $data->email,
                 "user_id" => $data->id ?? null,
@@ -37,7 +37,7 @@
         }
     }
 
-    if(isset($_SESSION["system"]["username"])) {
+        if(isset($_SESSION["system"]["username"])) {
       //echo "Sesión iniciada";
       header("Location: /");
     }
