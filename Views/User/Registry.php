@@ -1,14 +1,3 @@
-<?php
-    use Models\Service as Service;
-    use Models\Role as Role;
-
-    $services = new Service();
-    $services = $services->toList();
-
-    $roles = new Role();
-    $roles = $roles->toList();
-    //echo json_encode($roles);
-?>
 
 <div class="row">
     <div class="col-md-6">
@@ -27,63 +16,34 @@
                     </div> <br>
 
                     <div class="form-group">
-                        <label for="name" class="form-label">Nombre Completo</label>
-                        <input autocomplete="off" type="text" name="name" id="name" class="form-control" value="<?php echo $JData->name; ?>">
-                    </div> <br>
-
-                    <div class="form-group">
-                        <label for="username" class="form-label">Usuario</label>
-                        <input autocomplete="off" type="text" name="username" id="username" class="form-control" value="<?php echo $JData->username; ?>">
-                    </div> <br>
-
-                    <div class="form-group">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input autocomplete="off" type="password" name="password" id="password" class="form-control" value="<?php echo $JData->password; ?>">
-                    </div> <br>
-
-                    <div class="form-group">
-                        <label for="service_id" class="form-label">Servicio</label>
-                        <select name="service_id" id="service_id"  class="form-select">
-                            <option value="" default="selected">-- SELECCIONE UNA OPCIÓN --</option>
-                            <?php
-                                foreach($services as $key => $value) {
-                                    $selected = ($JData->service_id == $value->id) ? 'selected' : '';
-                                    echo "<option value='".$value->id."' $selected>".$value->name."</option>";
-                                }
-                            ?>
-                        </select>
-                    </div> <br>
-
-                    <div class="form-group">
-                        <label for="role_id" class="form-label">Rol</label>
-                        <select name="role_id" id="role_id" class="form-select">
-                            <option value="" default="selected">-- SELECCIONE UNA OPCIÓN --</option>
-                            <?php
-                                foreach($roles as $key => $value) {
-                                    $selected = ($JData->role_id == $value->id) ? 'selected' : '';
-                                    echo "<option value='".$value->id."' $selected>".$value->name."</option>";
-                                }
-                            ?>
-                        </select>
-                    </div> <br>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Correo</label>
+                        <label for="email" class="form-label">Email</label>
                         <input autocomplete="off" type="text" name="email" id="email" class="form-control" value="<?php echo $JData->email; ?>">
                     </div> <br>
 
                     <div class="form-group">
-                        <label for="phone" class="form-label">Teléfono</label>
-                        <input autocomplete="off" type="text" name="phone" id="phone" class="form-control" value="<?php echo $JData->phone; ?>">
+                        <label for="password" class="form-label">Password</label>
+                        <input autocomplete="off" type="text" name="password" id="password" class="form-control" value="<?php echo $JData->password; ?>">
                     </div> <br>
 
                     <div class="form-group">
-                        <label for="status" class="form-label">Estado</label>
-                        <select name="status" id="status" class="form-select">
-                            <option value="Active" <?php if($JData->status == 'Active'){ echo "selected"; } ?>>Activo</option>
-                            <option value="Inactive" <?php if($JData->status == 'Inactive'){ echo "selected"; } ?>>Inactivo</option>
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <input autocomplete="off" type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $JData->descripcion; ?>">
+                    </div> <br>
+
+                    <div class="form-group">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select name="estado" id="estado" class="form-select">
+                            <option value="Active" <?php if($JData->estado == 'Active'){ echo "selected"; } ?>>Activo</option>
+                            <option value="Inactive" <?php if($JData->estado == 'Inactive'){ echo "selected"; } ?>>Inactivo</option>
                         </select>
                     </div> <br>
+
+                    <div class="form-group">
+                        <label for="creacion" class="form-label">Creacion</label>
+                        <input autocomplete="off" type="text" name="creacion" id="creacion" class="form-control" value="<?php echo $JData->creacion; ?>">
+                    </div> <br>
+
+                    
 
                     <div class="form-group">
                         <a href="/User" class="btn btn-secondary">Regresar</a>
@@ -105,22 +65,15 @@
         e.preventDefault();
 
         // VALIDACIÓN CLIENTE: campos obligatorios
-        const name = document.getElementById('name')?.value?.trim() || '';
-        const username = document.getElementById('username')?.value?.trim() || '';
-        const password = document.getElementById('password')?.value?.trim() || '';
-        const service_id = document.getElementById('service_id')?.value?.trim() || '';
-        const role_id = document.getElementById('role_id')?.value?.trim() || '';
         const email = document.getElementById('email')?.value?.trim() || '';
-        const phone = document.getElementById('phone')?.value?.trim() || '';
+        const password = document.getElementById('password')?.value?.trim() || '';
+        const descripcion = document.getElementById('descripcion')?.value?.trim() || '';
+        const estado = document.getElementById('estado')?.value?.trim() || '';
+        const creacion = document.getElementById('creacion')?.value?.trim() || '';
 
-        if (!name) {
-            await Swal.fire('Error', 'El campo Nombre Completo es obligatorio.', 'error');
-            document.getElementById('name')?.focus();
-            return;
-        }
-        if (!username) {
-            await Swal.fire('Error', 'El campo Usuario es obligatorio.', 'error');
-            document.getElementById('username')?.focus();
+        if (!email) {
+            await Swal.fire('Error', 'El campo email  es obligatorio.', 'error');
+            document.getElementById('email')?.focus();
             return;
         }
         if (!password) {
@@ -128,27 +81,22 @@
             document.getElementById('password')?.focus();
             return;
         }
-        if (!service_id) {
-            await Swal.fire('Error', 'El campo Servicio es obligatorio.', 'error');
-            document.getElementById('service_id')?.focus();
+        if (!descripcion) {
+            await Swal.fire('Error', 'El campo Descripcion es obligatorio.', 'error');
+            document.getElementById('descripcion')?.focus();
             return;
         }
-        if (!role_id) {
-            await Swal.fire('Error', 'El campo Rol es obligatorio.', 'error');
-            document.getElementById('role_id')?.focus();
+        if (!estado) {
+            await Swal.fire('Error', 'El campo Estado es obligatorio.', 'error');
+            document.getElementById('estado')?.focus();
             return;
         }
-        if (!email) {
-            await Swal.fire('Error', 'El campo Correo es obligatorio.', 'error');
-            document.getElementById('email')?.focus();
+        if (!creacion) {
+            await Swal.fire('Error', 'El campo Creacion es obligatorio.', 'error');
+            document.getElementById('creacion')?.focus();
             return;
         }
-        if (!phone) {
-            await Swal.fire('Error', 'El campo Teléfono es obligatorio.', 'error');
-            document.getElementById('phone')?.focus();
-            return;
-        }
-
+        
         const confirm = await Swal.fire({
             title: '¿Guardar cambios?',
             text: 'Se guardarán los datos del usuario.',

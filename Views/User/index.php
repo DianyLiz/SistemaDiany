@@ -18,13 +18,11 @@
         <table class="table table-actions table-striped table-hover mb-0">
             <thead>
                 <tr>
-                    <th width="12%">Usuario</th>
-                    <th>Nombre Completo</th>
-                    <th width="15%">Correo</th>
-                    <th width="10%">Teléfono</th>
-                    <th width="15%">Servicio</th>
-                    <th width="12%">Rol</th>
+                    <th width="12%">Email</th>
+                    <th>Password</th>
+                    <th width="15%">Descripción</th>
                     <th width="10%">Estado</th>
+                    <th width="15%">Creado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -32,18 +30,15 @@
             <tbody>
                 <?php foreach($JData as $Key => $Value)
                 {
-                    $serviceName = isset($serviceMap[$Value->service_id]) ? $serviceMap[$Value->service_id] : $Value->service_id;
-                    $roleName = isset($roleMap[$Value->role_id]) ? $roleMap[$Value->role_id] : $Value->role_id;
 
                     echo "<tr>";
-                        echo "<td>".$Value-> username."</td>";
-                        echo "<td>".$Value-> name."</td>";
                         echo "<td>".$Value-> email."</td>";
-                        echo "<td>".$Value-> phone."</td>";
-                        echo "<td>".htmlspecialchars($serviceName)."</td>";
-                        echo "<td>".htmlspecialchars($roleName)."</td>";
+                        echo "<td>".$Value-> password."</td>";
+                        echo "<td>".$Value-> descripcion."</td>";
+                        echo "<td>".$Value-> estado."</td>";
+                        echo "<td>".$Value-> creacion."</td>";
                         echo "<td>";
-                            if($Value-> status == 'Active'){
+                            if($Value-> estado == 'Active'){
                                 echo "<span class='badge bg-success'>Activo</span>";
                             } else {
                                 echo "<span class='badge bg-danger'>Inactivo</span>";

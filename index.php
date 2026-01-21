@@ -12,11 +12,6 @@
     // Limpiar la ruta de posibles parámetros de consulta (si existen)
     $path = strtok($path, '?');
 
-    // 2. Comprobar si la solicitud actual es para un Reporte PDF
-    // detecta rutas que suelen devolver PDF (Audit/View, Report/*, User/Report, etc.)
-    $rawUrl = isset($_GET['url']) ? $_GET['url'] : '';
-    $check = strtolower($path . ' ' . $rawUrl);
-    $is_pdf_report = (strpos($check, 'audit/view') !== false) || (strpos($check, 'report/') !== false) || (strpos($check, 'user/report') !== false) || (strpos($check, 'userreport') !== false);
 
     if(!isset($_SESSION["system"]["username"]) && $path !== '/Login'){
         header("Location: /Login");

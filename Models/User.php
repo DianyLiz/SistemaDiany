@@ -76,14 +76,11 @@
         public function save($entity){
             $sql = "call SP_User (";
             $sql .= "'".$entity->id."', ";
-            $sql .= "'".$entity->name."', ";
-            $sql .= "'".$entity->username."', ";
-            $sql .= "'".$entity->password."', ";
-            $sql .= "'".$entity->service_id."', ";
-            $sql .= "'".$entity->role_id."', ";
             $sql .= "'".$entity->email."', ";
-            $sql .= "'".$entity->phone."', ";
-            $sql .= "'".$entity->status."'";
+            $sql .= "'".$entity->password."', ";
+            $sql .= "'".$entity->descripcion."', ";
+            $sql .= "'".$entity->estado."', ";
+            $sql .= "'".$entity->creacion."'";
             $sql .= ");";
 
             $stmt = $this->Conexion->prepare($sql);
