@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h5 class="mb-3">
-                        <img class="img-logo-selection" width="40" height="40" src="../Content/Demo/img/LOGO_TP_BLANCO_bg.png" alt=""></i>  <span style="font-weight:700;font-size:1.5rem">TicketPro</span>
+                        <img class="img-logo-selection" width="40" height="40" src="../Content/Demo/img/LOGO_TP_BLANCO_bg.png" alt=""></i>  <span style="font-weight:700;font-size:1.5rem">Sistema Diany</span>
                     </h5>
-                    <p class="text-muted">Su solución permite mejorar la eficiencia, reducir tiempos de espera y optimizar los procesos en instituciones con alto volumen de usuarios</p>
+                    <p class="text-muted">Lo mejor en seguridad y eficiencia.</p>
                 </div>
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h5 class="mb-3">Sobre Nosotros</h5>
@@ -24,8 +24,7 @@
 
                             <ul class="collapse ps-3" id="quienesContent">
                                 <li>
-                                    Sistema Diany es una plataforma innovadora diseñada para gestionar y optimizar la 
-                                    atención al cliente en instituciones con alto volumen de usuarios.
+                                   Sistema eficiente y seguro 
                                 </li>
                             </ul>
                         </li>
@@ -41,8 +40,7 @@
 
                             <ul class="collapse ps-3" id="misionContent">
                                 <li>
-                                    Brindar soluciones tecnológicas eficientes que mejoren la experiencia del cliente
-                                    y optimicen los procesos de atención en instituciones de alto tráfico.
+                                    Soluciones seguras y eficientes para la gestión de atención al cliente
                                 </li>
                             </ul>
                         </li>
@@ -58,9 +56,7 @@
 
                             <ul class="collapse ps-3" id="visionContent">
                                 <li>
-                                    Ser la plataforma líder en gestión de atención al cliente, reconocida por su innovación,
-                                    fiabilidad y capacidad para transformar la experiencia del usuario en instituciones de 
-                                    alto volumen.
+                                    Ser líderes en soluciones de gestión de atención al cliente a nivel mundial
                                 </li>
                             </ul>
                         </li>
@@ -92,7 +88,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="mb-0 text-muted">
-                        &copy; 2025 TicketPro. Todos los derechos reservados.
+                        &copy; 2025 Sistema Diany. Todos los derechos reservados.
                     </p>
                 </div>
             </div>

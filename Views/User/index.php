@@ -20,7 +20,7 @@
                 <tr>
                     <th width="12%">Email</th>
                     <th>Password</th>
-                    <th width="15%">Descripción</th>
+                    <th width="10%">Descripción</th>
                     <th width="10%">Estado</th>
                     <th width="15%">Creado</th>
                     <th>Acciones</th>
