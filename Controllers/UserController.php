@@ -42,5 +42,15 @@
 
             return $data;
         }
+
+        // Vista solo lectura de un usuario
+        public function Detalle($id)
+        {
+            $data = $this->userModel->getForId($id);
+            if(!$data){
+                $data = new eUser();
+            }
+            return $data;
+        }
     }
 ?>

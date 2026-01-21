@@ -45,7 +45,7 @@
                             }
                             echo "</td>";
                         echo "<td>
-                        <a href='/User/Registry/".$Value->id."' class='btn btn-sm btn-primary'>Editar</a>
+                            <a href='/User/Detalle/".$Value->id."' class='btn btn-sm btn-primary'>Detalle</a>
                         <a href='javascript:eliminar(".$Value->id.");' class='btn btn-sm btn-secondary'>Eliminar</a>
                         </td>";
                     echo "</tr>";
@@ -70,8 +70,7 @@
     }).then((result) => {
         if (!result.isConfirmed) return;
 
-        // Tabla real en BD es 'Users' (plural)
-        var data = { id: id, table: 'Users' };
+        var data = { id: id, table: 'Users'};
 
         $.ajax({
             url: "/API?method=Delete",
