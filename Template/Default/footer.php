@@ -72,10 +72,10 @@
                     <h5 class="mb-3">Contacto</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <i class="fas fa-envelope me-2"></i>soportetecnico@ticketpro.hn
+                            <i class="fas fa-envelope me-2"></i>soportetecnico@icloud.com
                         </li>
                         <li class="mb-2">
-                            <i class="fas fa-phone me-2"></i>+504 9659-5294
+                            <i class="fas fa-phone me-2"></i>+504 9408-0277
                         </li>
                         <li>
                             <div class="mt-2">
