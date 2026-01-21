@@ -24,7 +24,7 @@
 
                             <ul class="collapse ps-3" id="quienesContent">
                                 <li>
-                                    TicketPro es una plataforma innovadora diseñada para gestionar y optimizar la 
+                                    Sistema Diany es una plataforma innovadora diseñada para gestionar y optimizar la 
                                     atención al cliente en instituciones con alto volumen de usuarios.
                                 </li>
                             </ul>
