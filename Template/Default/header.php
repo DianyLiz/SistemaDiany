@@ -1,8 +1,17 @@
 <?php
 include_once __DIR__ . '/../../Config/Conexion.php';
-        if (session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
         session_start();
-        }
+}
+
+// Guardia de autenticación a nivel de plantilla
+$__req = isset($_SERVER['REQUEST_URI']) ? strtok($_SERVER['REQUEST_URI'], '?') : '/';
+$__isLogin = (stripos($__req, '/Login') === 0);
+$__isApi   = (stripos($__req, '/API') === 0) || (stripos($__req, '/APIR') === 0);
+if (!$__isLogin && !$__isApi && !isset($_SESSION['system']['username'])) {
+        header('Location: /Login');
+        exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +52,14 @@ include_once __DIR__ . '/../../Config/Conexion.php';
 
         <!-- SweetAlert2 CSS -->
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+                <?php
+                // Bloqueo por pestaña: si hay sesión pero la pestaña no tiene token, forzar reautenticación en esta pestaña
+                if (!$__isLogin && !$__isApi && isset($_SESSION['system']['username'])) {
+                        $current = isset($_SERVER['REQUEST_URI']) ? htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES, 'UTF-8') : '/';
+                        echo "<script>try{if(!sessionStorage.getItem('AUTH_TAB')){location.replace('/Login?reauth=1&return=' + encodeURIComponent('{$current}'));}}catch(e){}</script>";
+                }
+                ?>
 
         <script src="/Content/Jquery/jquery-3.1.1.min.js"></script>
 </head>

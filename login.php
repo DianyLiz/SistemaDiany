@@ -16,9 +16,12 @@
     if (isset($_GET["op"]) && $_GET["op"] === "exit") {
         session_unset();
         session_destroy();
-        header("Location: /Login");
+        // limpiar token por pestaña y permanecer en /Login
+        echo "<!DOCTYPE html><html><head><meta charset='utf-8'><script>try{sessionStorage.removeItem('AUTH_TAB');}catch(e){}; location.replace('/Login');</script></head><body></body></html>";
         exit();
     }
+
+    // Si viene con reauth=1 y ya existe sesión, mostrar formulario (no redirigir automáticamente)
 
 
     if(isset($_POST) && isset($_POST['email'])){
@@ -29,22 +32,27 @@
         $data = $user->authenticateByEmail($email, $password);
 
         if($data){
-            $_SESSION["system"] = [
+                        $_SESSION["system"] = [
                 "username" => $data->email,
                 "user_id" => $data->id ?? null,
             ];
-            header("Location: /");
+                        // Establecer token por pestaña y redirigir a la ruta solicitada (si es válida)
+                        $ret = isset($_GET['return']) ? $_GET['return'] : '/';
+                        // Permitir solo rutas relativas
+                        if (!is_string($ret) || strpos($ret, '/') !== 0) { $ret = '/'; }
+                        $ret = htmlspecialchars($ret, ENT_QUOTES, 'UTF-8');
+                        echo "<!DOCTYPE html><html><head><meta charset='utf-8'><script>try{sessionStorage.setItem('AUTH_TAB','1');}catch(e){}; location.replace('{$ret}');</script></head><body></body></html>";
             exit();
         } else {
             $error = "Correo o contraseña incorrectos";
         }
     }
 
-        if(isset($_SESSION["system"]["username"])) {
-      //echo "Sesión iniciada";
-      header("Location: /");
-        exit();
-    }
+                if(isset($_SESSION["system"]["username"]) && !isset($_GET['reauth'])) {
+            // Si ya hay sesión y no es reautenticación, asegurar token por pestaña y enviar a inicio
+            echo "<!DOCTYPE html><html><head><meta charset='utf-8'><script>try{sessionStorage.setItem('AUTH_TAB','1');}catch(e){}; location.replace('/');</script></head><body></body></html>";
+            exit();
+        }
     
 ?>
 
