@@ -22,7 +22,7 @@
     //Config\AutoLoad::run();
 
     // Incluir la plantilla solo si NO es una ruta que genera PDF
-    if (!$is_pdf_report) {
+    if (empty($is_pdf_report)) {
         include_once "Template\index.php";
     }
 
