@@ -1,0 +1,135 @@
+[2025-11-27 07:18:42] transactional delete error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_ticket` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(48): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:22:53] transactional delete error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_ticket` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(48): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:24:22] transactional delete error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_ticket` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(48): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:26:45] transactional delete error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_ticket` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(48): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:29:15] transactional delete error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_ticket` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(48): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:32] SP_Delete error for table user id=9: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:32] direct DELETE error for table user id=9: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.user' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:48] SP_Delete error for table role id=4: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`users`, CONSTRAINT `fk_user_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:48] direct DELETE error for table role id=4: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.role' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:58] SP_Delete error for table service id=2: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`tickets`, CONSTRAINT `fk_ticket_service` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:34:58] direct DELETE error for table service id=2: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.service' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:06] SP_Delete error for table servicedesk id=1: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_desk` FOREIGN KEY (`desk_id`) REFERENCES `servicedesks` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:06] direct DELETE error for table servicedesk id=1: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.servicedesk' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:15] SP_Delete error for table branch id=1: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE ticketpro.SP_Deletebranch does not exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:15] direct DELETE error for table branch id=1: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.branch' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:21] SP_Delete error for table clienttype id=1: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`tickets`, CONSTRAINT `fk_ticket_client_type` FOREIGN KEY (`client_type_id`) REFERENCES `clienttypes` (`id`))
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:21] direct DELETE error for table clienttype id=1: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.clienttype' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:27] SP_Delete error for table ticketstatus id=3: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE ticketpro.SP_Deleteticketstatus does not exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:27] direct DELETE error for table ticketstatus id=3: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.ticketstatus' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:37] SP_Delete error for table ticketstatus id=3: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE ticketpro.SP_Deleteticketstatus does not exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(66): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:35:37] direct DELETE error for table ticketstatus id=3: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.ticketstatus' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(74): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:48:26] deleted ticket id=3 audits_deleted=2 tickets_deleted=1
+[2025-11-27 07:49:48] deleted ticket id=2 audits_deleted=3 tickets_deleted=1
+[2025-11-27 07:50:38] deleted ticket id=7 audits_deleted=2 tickets_deleted=1
+[2025-11-27 07:52:24] SP_Delete error for table ticketstatus id=3: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE ticketpro.SP_Deleteticketstatus does not exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(75): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 07:52:24] direct DELETE error for table ticketstatus id=3: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.ticketstatus' doesn't exist
+Trace:#0 C:\xampp\htdocs\TicketPro\APIR\Method\Delete.php(83): PDOStatement->execute()
+#1 C:\xampp\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2025-11-27 08:37:16] deleted ticket id=8 audits_deleted=3 tickets_deleted=1
+[2025-11-27 08:37:20] deleted ticket id=10 audits_deleted=2 tickets_deleted=1
+[2025-11-27 08:37:26] deleted ticket id=11 audits_deleted=2 tickets_deleted=1
+[2025-11-27 08:37:31] deleted ticket id=15 audits_deleted=3 tickets_deleted=1
+[2025-11-27 08:37:42] deleted ticket id=12 audits_deleted=2 tickets_deleted=1
+[2025-11-27 08:37:46] deleted ticket id=14 audits_deleted=2 tickets_deleted=1
+[2025-11-27 08:37:51] deleted ticket id=13 audits_deleted=1 tickets_deleted=1
+[2025-11-27 08:37:57] deleted ticket id=9 audits_deleted=3 tickets_deleted=1
+[2025-11-27 08:38:02] deleted ticket id=6 audits_deleted=2 tickets_deleted=1
+[2025-11-27 08:38:07] deleted ticket id=5 audits_deleted=3 tickets_deleted=1
+[2025-11-27 08:38:11] deleted ticket id=4 audits_deleted=3 tickets_deleted=1
+[2025-11-27 15:00:37] deleted ticket id=1 audits_deleted=14 tickets_deleted=1
+[2025-11-27 15:00:41] deleted ticket id=2 audits_deleted=7 tickets_deleted=1
+[2025-11-27 15:00:43] deleted ticket id=3 audits_deleted=4 tickets_deleted=1
+[2025-11-27 15:00:46] deleted ticket id=4 audits_deleted=4 tickets_deleted=1
+[2025-11-27 15:00:48] deleted ticket id=5 audits_deleted=4 tickets_deleted=1
+[2025-11-27 15:00:51] deleted ticket id=6 audits_deleted=4 tickets_deleted=1
+[2025-11-27 15:00:55] deleted ticket id=7 audits_deleted=5 tickets_deleted=1
+[2025-11-27 15:00:58] deleted ticket id=8 audits_deleted=3 tickets_deleted=1
+[2025-11-27 15:01:01] deleted ticket id=9 audits_deleted=2 tickets_deleted=1
+[2025-11-27 15:01:03] deleted ticket id=10 audits_deleted=1 tickets_deleted=1
+[2025-11-27 15:21:20] deleted ticket id=4 audits_deleted=2 tickets_deleted=1
+[2025-11-27 15:21:23] deleted ticket id=3 audits_deleted=2 tickets_deleted=1
+[2025-11-27 15:21:27] deleted ticket id=2 audits_deleted=2 tickets_deleted=1
+[2025-11-27 16:54:37] deleted ticket id=3 audits_deleted=20 tickets_deleted=1
+[2025-11-27 17:21:07] deleted ticket id=1 audits_deleted=41 tickets_deleted=1
+[2025-11-27 17:21:11] deleted ticket id=2 audits_deleted=33 tickets_deleted=1
+[2025-11-27 17:21:37] SP_Delete error for table user id=4: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`ticketpro`.`audits`, CONSTRAINT `fk_audit_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+Trace:#0 C:\xamppWEB\htdocs\TicketPro\APIR\Method\Delete.php(75): PDOStatement->execute()
+#1 C:\xamppWEB\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xamppWEB\\htd...')
+#2 {main}
+[2025-11-27 17:21:37] direct DELETE error for table user id=4: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ticketpro.user' doesn't exist
+Trace:#0 C:\xamppWEB\htdocs\TicketPro\APIR\Method\Delete.php(83): PDOStatement->execute()
+#1 C:\xamppWEB\htdocs\TicketPro\APIR\index.php(37): require_once('C:\\xamppWEB\\htd...')
+#2 {main}
+[2025-11-27 18:06:26] deleted ticket id=1 audits_deleted=6 tickets_deleted=1
+[2025-11-27 18:06:30] deleted ticket id=2 audits_deleted=4 tickets_deleted=1
+[2025-11-27 19:11:15] deleted ticket id=1 audits_deleted=29 tickets_deleted=1
+[2025-11-27 19:11:19] deleted ticket id=2 audits_deleted=12 tickets_deleted=1
+[2025-11-27 19:11:22] deleted ticket id=3 audits_deleted=6 tickets_deleted=1
