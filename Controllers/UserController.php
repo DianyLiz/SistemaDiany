@@ -7,6 +7,31 @@
     Class UserController{
         private $userModel;
 
+        // Autenticación de usuario (LOGIN)
+            public function login()
+            {
+                if(isset($_POST['email']) && isset($_POST['password'])){
+
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+
+                    // Llamamos al método seguro del modelo
+                    $user = $this->userModel->authenticateByEmail($email, $password);
+
+                    if($user){
+                        session_start();
+                        $_SESSION['user_id'] = $user->id;
+                        $_SESSION['user_email'] = $user->email;
+
+                        header("Location: index.php");
+                        exit;
+                    } else {
+                        return "Credenciales incorrectas";
+                    }
+                }
+            }
+
+
         public function __construct()
         {
             $this->userModel = new User();

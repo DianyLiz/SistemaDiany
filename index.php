@@ -1,6 +1,11 @@
 <?php
     session_start();
 
+    if (!isset($_SESSION["system"]["username"])) {
+        header("Location: /Login");
+        exit();
+    }
+
     require_once "Define.php";
     require_once "Config\JRequest.php";
     require_once "Config\JRouter.php";

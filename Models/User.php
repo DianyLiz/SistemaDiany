@@ -62,19 +62,18 @@
 
             // Verificar usando hash si existe; si no, comparar texto plano
             $isValid = false;
-            if(is_string($user->password) && strlen($user->password) > 0){
-                if(password_verify($password, $user->password)){
-                    $isValid = true;
-                } elseif ($user->password === $password) {
-                    $isValid = true;
-                }
+            // Verificar contraseña usando hash (bcrypt)
+            if(password_verify($password, $user->password)){
+                return $user;
             }
 
-            return $isValid ? $user : false;
+            return false;
+
         }
 
         public function save($entity){
             $sql = "call SP_User (";
+            $entity->password = password_hash($entity->password, PASSWORD_BCRYPT);
             $sql .= "'".$entity->id."', ";
             $sql .= "'".$entity->email."', ";
             $sql .= "'".$entity->password."', ";

@@ -10,14 +10,16 @@
     $user = new User();
 
     $email = "";
+    $error = "";
 
-    if(isset($_GET["op"])) {
-      if($_GET["op"]=="exit"){
+    // Cerrar sesión solo si el parámetro existe
+    if (isset($_GET["op"]) && $_GET["op"] === "exit") {
+        session_unset();
         session_destroy();
         header("Location: /Login");
         exit();
-      }
     }
+
 
     if(isset($_POST) && isset($_POST['email'])){
         $email = $_POST['email'];
@@ -27,20 +29,23 @@
         $data = $user->authenticateByEmail($email, $password);
 
         if($data){
-            // Iniciar sesión con datos mínimos (clave 'username' usada en index.php)
             $_SESSION["system"] = [
                 "username" => $data->email,
                 "user_id" => $data->id ?? null,
             ];
             header("Location: /");
             exit();
+        } else {
+            $error = "Correo o contraseña incorrectos";
         }
     }
 
         if(isset($_SESSION["system"]["username"])) {
       //echo "Sesión iniciada";
       header("Location: /");
+        exit();
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -80,6 +85,13 @@
 
             <!-- Formulario de login -->
             <div class="login-card">
+                <!-- Manejo de errores (prevención XSS) -->
+                <?php if($error): ?>
+                    <div class="alert alert-danger text-center">
+                        <?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
+                    </div>
+                <?php endif; ?>
+
                 <form id="loginForm" method="post">
                     <!-- Campo de correo -->
                     <div class="form-floating-modern mb-4">
