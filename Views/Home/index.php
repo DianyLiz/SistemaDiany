@@ -55,19 +55,80 @@
                 }
             ?>
 
+            <?php
+                // Resumen rápido para tarjetas
+                $usersTotal = count($Usuario);
+                $usersActive = 0; $usersInactive = 0;
+                $lastCreatedEmail = null; $lastCreatedTs = null;
+                foreach ($Usuario as $u) {
+                    $st = strtolower($u['estado'] ?? '');
+                    if ($st === 'active') $usersActive++;
+                    elseif ($st === 'inactive') $usersInactive++;
+                    $ctime = isset($u['creacion']) ? strtotime($u['creacion']) : null;
+                    if ($ctime && (!$lastCreatedTs || $ctime > $lastCreatedTs)) { $lastCreatedTs = $ctime; $lastCreatedEmail = $u['email'] ?? null; }
+                }
+                $lastCreatedLabel = $lastCreatedTs ? (date('Y-m-d', $lastCreatedTs).' · '.($lastCreatedEmail ?? '')) : '—';
+            ?>
+
             <div class="row">
+                <!-- Total Usuarios -->
                 <div class="col-md-4 mb-3">
                     <div class="card card-stat">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6 class="card-title text-muted mb-2">Usuarios</h6>
-                                    <h3 class="mb-0"><?php echo count($Usuario); ?></h3>
+                                    <h3 class="mb-0"><?php echo $usersTotal; ?></h3>
                                     <small class="text-muted">Usuarios registrados</small>
                                 </div>
-                                <div class="stat-icon bg-primary"><i class="fas fa-ticket-alt"></i></div>
+                                <div class="stat-icon bg-primary"><i class="fas fa-users"></i></div>
                             </div>
+                            <div class="mt-2"><small class="text-muted">Último: <?php echo htmlspecialchars($lastCreatedLabel, ENT_QUOTES, 'UTF-8'); ?></small></div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Usuarios Activos -->
+                <div class="col-md-4 mb-3">
+                    <div class="card card-stat">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-title text-muted mb-2">Activos</h6>
+                                    <h3 class="mb-0"><?php echo $usersActive; ?></h3>
+                                    <small class="text-muted">Usuarios activos</small>
+                                </div>
+                                <div class="stat-icon bg-info"><i class="fas fa-user-check"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usuarios Inactivos -->
+                <div class="col-md-4 mb-3">
+                    <div class="card card-stat">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="card-title text-muted mb-2">Inactivos</h6>
+                                    <h3 class="mb-0"><?php echo $usersInactive; ?></h3>
+                                    <small class="text-muted">Usuarios inactivos</small>
+                                </div>
+                                <div class="stat-icon bg-warning"><i class="fas fa-user-slash"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones rápidas -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-stat">
+                        <div class="card-body d-flex flex-wrap gap-2">
+                            <a href="/User" class="btn btn-outline-primary"><i class="fas fa-list me-2"></i>Ver Usuarios</a>
+                            <a href="/User/Registry/" class="btn btn-success"><i class="fas fa-user-plus me-2"></i>Registrar Usuario</a>
+                            <a href="/Report/UserReport" target="_blank" class="btn btn-secondary"><i class="fas fa-file-pdf me-2"></i>Reporte PDF</a>
                         </div>
                     </div>
                 </div>
