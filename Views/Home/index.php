@@ -6,12 +6,11 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h1 class="mb-1">Panel de Control</h1>
-                    <p class="text-muted">Bienvenido al sistema de gestión de tickets</p>
+                    <p class="text-muted">Bienvenido al sistema de Diany</p>
                 </div>
                 <div>
-                    <a href="Views/selection/index.html" target="_blank" class="btn btn-primary">Panel Cliente</a>
+                    <a href="" target="_blank" class="btn btn-primary">Panel De Bienvenida</a>
                     <a href=""></a>
-                    <a href="Views/ticket-display/index.html?admin=1" target="_blank" class="btn btn-primary">Panel General</a>
                 </div>
             </div>
         </div>
@@ -19,51 +18,36 @@
 
     <!-- Gráficos y Tablas -->
     <div class="row">
-        <!-- Tablas de Tickets por categoría (muestra ticket y caja que los atiende) -->
+
         <div class="col-12 mb-4">
             <?php
-                // Obtener tickets desde la base de datos y clasificarlos para el panel
-                $normalTickets = [];
-                $customerTickets = [];
-                $premiumTickets = [];
+                $Usuario = [];
+
 
                 try {
                     $pdo = new \Config\Conexion();
                     $pdo = $pdo->getConexion();
 
-                        // Obtener tickets en cola: buscar por nombre de estado que contenga 'espera'
-                        // (más robusto que asumir un id fijo, evita discrepancias entre entornos)
-                        $sql = "SELECT t.id, t.ticket_code, s.name AS service_name, ct.name AS client_type_name, ts.name AS status_name
-                            FROM Tickets t
-                            LEFT JOIN Services s ON s.id = t.service_id
-                            LEFT JOIN ClientTypes ct ON ct.id = t.client_type_id
-                            LEFT JOIN TicketStatuses ts ON ts.id = t.status_id
-                            WHERE LOWER(COALESCE(ts.name, '')) LIKE '%espera%'
-                            ORDER BY t.id DESC";
+                        $sql = "SELECT u.id, u.email, u.password, u.descripcion, u.estado, u.creacion
+                            FROM users u
+                            ORDER BY u.id DESC";
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
                     $all = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
                     foreach ($all as $row) {
                         $id = $row['id'];
-                        $ticket_code = isset($row['ticket_code']) ? $row['ticket_code'] : $id;
-                        $serviceName = isset($row['service_name']) ? $row['service_name'] : '';
-                        $clientTypeName = isset($row['client_type_name']) ? $row['client_type_name'] : '';
+                        $email = isset($row['email']) ? $row['email'] : $id;
 
-                        // Clasificación heurística (ajustable según datos reales)
-                        $ctLower = strtolower($clientTypeName);
-                        $sLower = strtolower($serviceName);
 
-                        // keep numeric id and show ticket_code separately
-                        $item = ['id' => $id, 'code' => $ticket_code, 'caja' => $serviceName];
-
-                        if (strpos($ctLower, 'prefer') !== false || strpos($ctLower, 'preferencial') !== false) {
-                            $premiumTickets[] = $item;
-                        } elseif (strpos($sLower, 'atenc') !== false || strpos($sLower, 'cliente') !== false || strpos($ctLower, 'atenc') !== false) {
-                            $customerTickets[] = $item;
-                        } else {
-                            $normalTickets[] = $item;
-                        }
+                        $Usuario[] = [
+                            'id' => $id,
+                            'email' => $email,
+                            'password' => isset($row['password']) ? $row['password'] : '',
+                            'descripcion' => isset($row['descripcion']) ? $row['descripcion'] : '',
+                            'estado' => isset($row['estado']) ? $row['estado'] : '',
+                            'creacion' => isset($row['creacion']) ? $row['creacion'] : ''
+                        ];
                     }
                 } catch (\Exception $e) {
                     // En caso de error con la BD, dejar arrays vacíos pero registrar para depuración
@@ -77,114 +61,13 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6 class="card-title text-muted mb-2">Normal</h6>
-                                    <h3 class="mb-0"><?php echo count($normalTickets); ?></h3>
-                                    <small class="text-muted">Tickets en cola</small>
+                                    <h6 class="card-title text-muted mb-2">Usuarios</h6>
+                                    <h3 class="mb-0"><?php echo count($Usuario); ?></h3>
+                                    <small class="text-muted">Usuarios registrados</small>
                                 </div>
                                 <div class="stat-icon bg-primary"><i class="fas fa-ticket-alt"></i></div>
                             </div>
 
-                            <div class="table-responsive mt-3">
-                                <table class="table table-sm mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Ticket</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($normalTickets as $tk){ ?>
-                                            <tr>
-                                                <td><strong>#<?php echo $tk['code']; ?></strong></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-success tomar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" data-caja="<?php echo $tk['caja']; ?>">Tomar</button>
-                                                    <button type="button" class="btn btn-sm btn-danger cerrar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cerrar</button>
-                                                    <button type="button" class="btn btn-sm btn-warning cambiar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cambiar Servicio</button>
-                                                    <button type="button" class="btn btn-sm btn-outline-primary repetir-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" disabled>Repetir</button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <div class="card card-stat">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-title text-muted mb-2">Atención al Cliente</h6>
-                                    <h3 class="mb-0"><?php echo count($customerTickets); ?></h3>
-                                    <small class="text-muted">Tickets en cola</small>
-                                </div>
-                                <div class="stat-icon bg-warning"><i class="fas fa-headset"></i></div>
-                            </div>
-
-                            <div class="table-responsive mt-3">
-                                <table class="table table-sm mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Ticket</th>
-                                            <th>Caja</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($customerTickets as $tk){ ?>
-                                            <tr>
-                                                <td><strong>#<?php echo $tk['code']; ?></strong></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-success tomar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" data-caja="<?php echo $tk['caja']; ?>">Tomar</button>
-                                                    <button type="button" class="btn btn-sm btn-danger cerrar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cerrar</button>
-                                                    <button type="button" class="btn btn-sm btn-warning cambiar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cambiar Servicio</button>
-                                                    <button type="button" class="btn btn-sm btn-outline-primary repetir-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" disabled>Repetir</button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <div class="card card-stat">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="card-title text-muted mb-2">Preferencial</h6>
-                                    <h3 class="mb-0"><?php echo count($premiumTickets); ?></h3>
-                                    <small class="text-muted">Tickets en cola</small>
-                                </div>
-                                <div class="stat-icon bg-info"><i class="fas fa-star"></i></div>
-                            </div>
-
-                            <div class="table-responsive mt-3">
-                                <table class="table table-sm mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Ticket</th>
-                                            <th>Caja</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($premiumTickets as $tk){ ?>
-                                            <tr>
-                                                <td><strong>#<?php echo $tk['code']; ?></strong></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-sm btn-success tomar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" data-caja="<?php echo $tk['caja']; ?>">Tomar</button>
-                                                    <button type="button" class="btn btn-sm btn-danger cerrar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cerrar</button>
-                                                    <button type="button" class="btn btn-sm btn-warning cambiar-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>">Cambiar Servicio</button>
-                                                    <button type="button" class="btn btn-sm btn-outline-primary repetir-btn" data-id="<?php echo $tk['id']; ?>" data-code="<?php echo $tk['code']; ?>" disabled>Repetir</button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

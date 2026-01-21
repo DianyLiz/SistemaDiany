@@ -1,2 +1,5 @@
 [2026-01-21 17:36:10] Home list error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.tickets' doesn't exist
 [2026-01-21 17:51:29] Home list error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.tickets' doesn't exist
+[2026-01-21 18:14:33] Home list error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.tickets' doesn't exist
+[2026-01-21 18:55:03] Home list error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.tickets' doesn't exist
+[2026-01-21 19:01:39] Home list error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'vientoenpopa.tickets' doesn't exist
