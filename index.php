@@ -12,6 +12,8 @@
     // Limpiar la ruta de posibles parámetros de consulta (si existen)
     $path = strtok($path, '?');
 
+    // Detectar si la ruta debe emitir PDF (evita cargar la plantilla HTML)
+    $is_pdf_report = (preg_match('#^/Report(/|$)#i', $path) === 1);
 
     if(!isset($_SESSION["system"]["username"]) && $path !== '/Login'){
         header("Location: /Login");
@@ -22,7 +24,7 @@
     //Config\AutoLoad::run();
 
     // Incluir la plantilla solo si NO es una ruta que genera PDF
-    if (empty($is_pdf_report)) {
+    if (!$is_pdf_report) {
         include_once "Template\index.php";
     }
 
