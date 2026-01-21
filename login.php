@@ -5,13 +5,11 @@
     require_once "Config\Conexion.php";
     require_once 'Entity\eUser.php';
     require_once "Models\User.php";
-    // Ensure Audit model is available when logging login events
-    require_once "Models\Audit.php";
 
     use Models\User as User;
     $user = new User();
 
-    $username = "";
+    $email = "";
 
     if(isset($_GET["op"])) {
       if($_GET["op"]=="exit"){
@@ -21,28 +19,22 @@
       }
     }
 
-    if(isset($_POST) && isset($_POST['username'])){
-        $username = $_POST['username'];
+    if(isset($_POST) && isset($_POST['email'])){
+        $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $data = $user->forUserName($username, $password);
-        //echo json_encode($data);
+        // Autenticar por email y validar contraseña (hash o texto plano)
+        $data = $user->authenticateByEmail($email, $password);
 
-        if($data) {
-                    $_SESSION["system"]["username"]=$data->username;
-                    $_SESSION["system"]["name"]=$data->name;
-                    $_SESSION["system"]["user_id"] = isset($data->id) ? $data->id : null;
-
-                    // Log audit: user login
-                      try {
-                          $audit = new \Models\Audit();
-                          $audit->log($data->id, null, null, 'login', 'Usuario inició sesión: ' . $data->username);
-                      } catch (\Exception $e) {
-                          // ignore logging failures
-                      }
+        if($data){
+            // Iniciar sesión con datos mínimos
+            $_SESSION["system"] = [
+                "username" => $data->email,
+                "user_id" => $data->id ?? null,
+            ];
+            header("Location: /");
+            exit();
         }
-
-        
     }
 
     if(isset($_SESSION["system"]["username"])) {
@@ -89,13 +81,13 @@
             <!-- Formulario de login -->
             <div class="login-card">
                 <form id="loginForm" method="post">
-                    <!-- Campo de usuario -->
+                    <!-- Campo de correo -->
                     <div class="form-floating-modern mb-4">
                         <div class="input-wrapper">
-                            <i class="input-icon fas fa-user"></i>
-                            <input type="text" class="form-control-modern" id="username" name="username"
-                                 value="<?php echo $username ?>" required autocomplete="off">
-                            <label for="username" class="floating-label">Usuario</label>
+                            <i class="input-icon fas fa-envelope"></i>
+                            <input type="email" class="form-control-modern" id="email" name="email"
+                                 value="<?php echo $email ?>" required autocomplete="off">
+                            <label for="email" class="floating-label">Correo electrónico</label>
                             <div class="input-line"></div>
                         </div>
                     </div>
@@ -135,4 +127,3 @@
     <script src="Content/dist/js/login-theme.js"></script>
 </body>
 </html>
-

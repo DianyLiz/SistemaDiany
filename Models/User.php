@@ -39,13 +39,38 @@
             }
         }
 
-        public function forUserName($username, $password) {
-            $sql = "SELECT * FROM Users WHERE username = :username AND password = :password";
+        public function forUserName($useremail, $password) {
+            $sql = "SELECT * FROM Users WHERE email = :email AND password = :password";
             $stmt = $this->Conexion->prepare($sql);
-            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":email", $useremail);
             $stmt->bindParam(":password", $password);
             $stmt->execute();
             return $stmt->fetch(\PDO::FETCH_OBJ);
+        }
+
+        // Autenticación segura: busca por email y verifica hash de contraseña
+        public function authenticateByEmail($email, $password) {
+            $sql = "SELECT * FROM Users WHERE email = :email LIMIT 1";
+            $stmt = $this->Conexion->prepare($sql);
+            $stmt->bindParam(":email", $email);
+            $stmt->execute();
+            $user = $stmt->fetch(\PDO::FETCH_OBJ);
+
+            if(!$user){
+                return false;
+            }
+
+            // Verificar usando hash si existe; si no, comparar texto plano
+            $isValid = false;
+            if(is_string($user->password) && strlen($user->password) > 0){
+                if(password_verify($password, $user->password)){
+                    $isValid = true;
+                } elseif ($user->password === $password) {
+                    $isValid = true;
+                }
+            }
+
+            return $isValid ? $user : false;
         }
 
         public function save($entity){

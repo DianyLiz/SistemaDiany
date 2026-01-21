@@ -15,18 +15,15 @@ class Conexion {
     public function __construct() {
 
         try {
-            $this->conn = new \PDO("mysql:host={$this->host};port={$this->port};dbname={$this->db_name};charset={$this->charset}",
-                $this->user,
-                $this->password,
-                [
-                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                    \PDO::ATTR_EMULATE_PREPARES => false,
-                ]
-            );
-        } catch (\PDOException $e) {
-            echo "Connection error: " . $e->getMessage();
-        }
+            $this->conn = new \PDO("mysql:host=".$this->host.";port=".$this->port.";dbname=".$this->db_name.";charset=".$this->charset, $this->user, $this->password);
+            // throw exceptions on SQL errors to make debugging easier
+            $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            
+            //echo "Conexión Exitosa...";
+
+        } catch (\Throwable $th) {
+            die("Conexión Fallida... ".$th->getMessage());
+        } 
     }
 
     public function getConexion() {
