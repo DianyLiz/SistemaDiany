@@ -70,7 +70,8 @@
     }).then((result) => {
         if (!result.isConfirmed) return;
 
-        var data = { id: id, table: 'user'};
+        // Tabla real en BD es 'Users' (plural)
+        var data = { id: id, table: 'Users' };
 
         $.ajax({
             url: "/API?method=Delete",

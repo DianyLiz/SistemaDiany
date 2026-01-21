@@ -39,7 +39,18 @@
     }
 
     $logFile = __DIR__ . '/../logs/delete_errors.log';
+    // Normalizar algunos alias comunes de tablas
+    $aliases = [
+        'user' => 'Users',
+        'users' => 'Users',
+        'usuario' => 'Users',
+        'usuarios' => 'Users',
+    ];
     $tblLower = strtolower($table);
+    if (isset($aliases[$tblLower])) {
+        $table = $aliases[$tblLower];
+        $tblLower = strtolower($table);
+    }
 
     $ok = false;
     $msg = '';
@@ -94,21 +105,6 @@
             'message' => "Registro eliminado correctamente!",
             'success' => true
         );
-
-        // log audit of delete
-        try {
-            $userId = isset($_SESSION["system"]["user_id"]) ? $_SESSION["system"]["user_id"] : null;
-            $audit = new \Models\Audit();
-            if ($tblLower === 'tickets' || $tblLower === 'ticket') {
-                // ticket deleted — avoid inserting audit with ticket_id pointing to non-existing row
-                $audit->log($userId, null, null, 'delete', 'Eliminado de ' . $table . ' ID='.$id);
-            } else {
-                $audit->log($userId, null, $id, 'delete', 'Eliminado de ' . $table . ' ID='.$id);
-            }
-        } catch (\Exception $e) {
-            @file_put_contents($logFile, '['.date('Y-m-d H:i:s').'] audit logging error: '.$e->getMessage()."\nTrace:".$e->getTraceAsString()."\n", FILE_APPEND);
-        }
-
         echo json_encode($json);
         http_response_code(200);
     } else {
