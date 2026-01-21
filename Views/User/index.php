@@ -32,11 +32,11 @@
                 {
 
                     echo "<tr>";
-                        echo "<td>".$Value-> email."</td>";
-                        echo "<td>".$Value-> password."</td>";
-                        echo "<td>".$Value-> descripcion."</td>";
-                        echo "<td>".$Value-> estado."</td>";
-                        echo "<td>".$Value-> creacion."</td>";
+                        echo "<td>".htmlspecialchars($Value-> email, ENT_QUOTES, 'UTF-8')."</td>";
+                        echo "<td>".htmlspecialchars($Value-> password, ENT_QUOTES, 'UTF-8')."</td>";
+                        echo "<td>".htmlspecialchars($Value-> descripcion, ENT_QUOTES, 'UTF-8')."</td>";
+                        echo "<td>".htmlspecialchars($Value-> estado, ENT_QUOTES, 'UTF-8')."</td>";
+                        echo "<td>".htmlspecialchars($Value-> creacion, ENT_QUOTES, 'UTF-8')."</td>";
                         echo "<td>";
                             if($Value-> estado == 'Active'){
                                 echo "<span class='badge bg-success'>Activo</span>";

@@ -165,3 +165,11 @@ Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Po
 Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(86): PDOStatement->execute()
 #1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
 #2 {main}
+[2026-01-21 22:41:50] SP_Delete error for table Users id=5: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE vientoenpopa.SP_DeleteUsers does not exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(86): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+[2026-01-21 22:46:24] SP_Delete error for table Users id=5: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE vientoenpopa.SP_DeleteUsers does not exist
+Trace:#0 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\Method\Delete.php(86): PDOStatement->execute()
+#1 C:\xampp\htdocs\Auditoria y Seguridad de Sistemas\IParcial\Viento en Popa\Tarea1\APIR\index.php(37): require_once('C:\\xampp\\htdocs...')
+#2 {main}

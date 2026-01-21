@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
     use Models\User as User;
+    use Config\JInput as JInput;
 
     use Entity\eUser as eUser;
 
@@ -47,10 +48,10 @@
             $success = true;
             if(isset($_POST) && isset($_POST['Registrar'])){
                 $user = new eUser();
-
-                foreach($_POST as $key => $value) {
+                // sanitize all POST fields before assigning
+                $clean = JInput::sanitizeArray($_POST);
+                foreach($clean as $key => $value) {
                     $user->$key = $value;
-                    //echo "$key : $value <br>";
                 }
 
                 //echo json_encode($user);

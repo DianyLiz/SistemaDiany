@@ -105,8 +105,8 @@
                     <div class="form-floating-modern mb-4">
                         <div class="input-wrapper">
                             <i class="input-icon fas fa-envelope"></i>
-                            <input type="email" class="form-control-modern" id="email" name="email"
-                                 value="<?php echo $email ?>" required autocomplete="off">
+                               <input type="email" class="form-control-modern" id="email" name="email"
+                                   value="<?php echo htmlspecialchars($email, ENT_QUOTES, 'UTF-8'); ?>" required autocomplete="off">
                             <label for="email" class="floating-label">Correo electrónico</label>
                             <div class="input-line"></div>
                         </div>

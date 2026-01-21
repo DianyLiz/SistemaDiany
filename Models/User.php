@@ -72,17 +72,16 @@
         }
 
         public function save($entity){
-            $sql = "call SP_User (";
-            $entity->password = password_hash($entity->password, PASSWORD_BCRYPT);
-            $sql .= "'".$entity->id."', ";
-            $sql .= "'".$entity->email."', ";
-            $sql .= "'".$entity->password."', ";
-            $sql .= "'".$entity->descripcion."', ";
-            $sql .= "'".$entity->estado."', ";
-            $sql .= "'".$entity->creacion."'";
-            $sql .= ");";
-
+            // Hash password and use prepared statement to avoid SQL injection
+            $hashed = password_hash($entity->password, PASSWORD_BCRYPT);
+            $sql = "CALL SP_User(:id, :email, :password, :descripcion, :estado, :creacion)";
             $stmt = $this->Conexion->prepare($sql);
+            $stmt->bindValue(':id', $entity->id);
+            $stmt->bindValue(':email', $entity->email);
+            $stmt->bindValue(':password', $hashed);
+            $stmt->bindValue(':descripcion', $entity->descripcion);
+            $stmt->bindValue(':estado', $entity->estado);
+            $stmt->bindValue(':creacion', $entity->creacion);
             $stmt->execute();
         }
     }

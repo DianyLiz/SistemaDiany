@@ -17,17 +17,17 @@
 
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input autocomplete="off" type="text" name="email" id="email" class="form-control" value="<?php echo $JData->email; ?>">
+                        <input autocomplete="off" type="text" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($JData->email, ENT_QUOTES, 'UTF-8'); ?>">
                     </div> <br>
 
                     <div class="form-group">
                         <label for="password" class="form-label">Password</label>
-                        <input autocomplete="off" type="text" name="password" id="password" class="form-control" value="<?php echo $JData->password; ?>">
+                        <input autocomplete="off" type="text" name="password" id="password" class="form-control" value="<?php echo htmlspecialchars($JData->password, ENT_QUOTES, 'UTF-8'); ?>">
                     </div> <br>
 
                     <div class="form-group">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <input autocomplete="off" type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo $JData->descripcion; ?>">
+                        <input autocomplete="off" type="text" name="descripcion" id="descripcion" class="form-control" value="<?php echo htmlspecialchars($JData->descripcion, ENT_QUOTES, 'UTF-8'); ?>">
                     </div> <br>
 
                     <div class="form-group">
@@ -40,7 +40,7 @@
 
                     <div class="form-group">
                         <label for="creacion" class="form-label">Creacion</label>
-                        <input autocomplete="off" type="text" name="creacion" id="creacion" class="form-control" value="<?php echo $JData->creacion; ?>">
+                        <input autocomplete="off" type="text" name="creacion" id="creacion" class="form-control" value="<?php echo htmlspecialchars($JData->creacion, ENT_QUOTES, 'UTF-8'); ?>">
                     </div> <br>
 
                     
