@@ -19,7 +19,6 @@
             <thead>
                 <tr>
                     <th width="12%">Email</th>
-                    <th>Password</th>
                     <th width="10%">Descripción</th>
                     <th width="10%">Estado</th>
                     <th width="15%">Creado</th>
@@ -33,7 +32,6 @@
 
                     echo "<tr>";
                         echo "<td>".htmlspecialchars($Value-> email, ENT_QUOTES, 'UTF-8')."</td>";
-                        echo "<td>".htmlspecialchars($Value-> password, ENT_QUOTES, 'UTF-8')."</td>";
                         echo "<td>".htmlspecialchars($Value-> descripcion, ENT_QUOTES, 'UTF-8')."</td>";
                         echo "<td>".htmlspecialchars($Value-> estado, ENT_QUOTES, 'UTF-8')."</td>";
                         echo "<td>".htmlspecialchars($Value-> creacion, ENT_QUOTES, 'UTF-8')."</td>";
